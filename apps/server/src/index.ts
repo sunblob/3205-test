@@ -33,7 +33,7 @@ app.get(
 
     const query = c.req.valid('query');
 
-    const filteredUsers = usersData.find((d) =>
+    const filteredUsers = usersData.filter((d) =>
       query.number ? d.email === query.email && d.number === query.number : d.email === query.email
     );
 
