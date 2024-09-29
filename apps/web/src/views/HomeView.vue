@@ -83,7 +83,7 @@ const submitForm = handleSubmit(async (values) => {
         type="submit"
         class="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md"
       >
-        Submit
+        {{ canAbort ? 'Cancel' : 'Submit' }}
       </button>
     </form>
     <!-- <div class="text-muted">IsPending: {{ isLoading }}</div> -->
