@@ -1,19 +1,34 @@
-# How to use
+# Запуск проекта
 
-## 1. Установить PNPM на ПК
+## Без Docker
 
-```bash
-  corepack enable pnpm
-```
-
-## 2. Установить зависимости
+### 1. Установить PNPM на ПК
 
 ```bash
- pnpm i
+corepack enable pnpm
 ```
 
-## 3. Запустить проект в dev режиме
+### 2. Установить зависимости
 
 ```bash
-  pnpm dev
+pnpm i
 ```
+
+### 3. Запустить проект в dev режиме
+
+```bash
+pnpm dev
+```
+
+## Docker
+
+### 1. Запустить через docker compose
+
+```bash
+docker compose up -d
+```
+
+- Проект будет доступен по адресу **localhost:8080**
+- Сервер доступен по адресу **localhost:3000**
+
+**Made with [Vue](https://vuejs.org/) and [Hono](https://hono.dev)**
