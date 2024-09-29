@@ -1,7 +1,8 @@
 {
   "name": "server",
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.1",
@@ -13,6 +14,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
+    "tsup": "^8.3.0",
     "tsx": "^4.7.1"
-  }
+  },
+  "packageManager": "pnpm@8.15.6"
 }
