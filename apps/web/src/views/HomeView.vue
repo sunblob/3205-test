@@ -1,31 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useFetch } from '@/composables/fetch'
+
+type User = { email: string; number: string }
 
 const email = ref('')
 const number = ref('')
-const isPending = ref(false)
-const user = ref<{ email: string; number: string }>()
+
+const { data, isPending, abort, execute } = useFetch<User>()
+
+const user = computed(() => data.value)
 
 async function submitForm() {
-  try {
-    isPending.value = true
-    const response = await fetch(
-      'http://localhost:3000/users?' +
-        new URLSearchParams({
-          email: email.value,
-          number: number.value
-        }),
-      {
-        method: 'GET'
-      }
-    )
-    const data = await response.json()
-    user.value = data
-  } catch (err) {
-    console.log(err)
-  } finally {
-    isPending.value = false
-  }
+  execute(
+    'http://localhost:3000/users?' +
+      new URLSearchParams({
+        email: email.value,
+        number: number.value
+      })
+  )
+}
+
+function clear() {
+  data.value = undefined
 }
 </script>
 
@@ -35,6 +32,8 @@ async function submitForm() {
       <input v-model="email" placeholder="Email" />
       <input v-model="number" placeholder="number" />
       <button type="submit">Submit</button>
+      <button v-if="user" @click.prevent="clear">Clear</button>
+      <button v-if="isPending" @click.prevent="abort">Abort</button>
     </form>
     <div>IsPending: {{ isPending }}</div>
     <div v-if="user">
