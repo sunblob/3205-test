@@ -81,7 +81,8 @@ const submitForm = handleSubmit(async (values) => {
       <div class="text-red-500">{{ errors.number }}</div>
       <button
         type="submit"
-        class="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md"
+        class="bg-primary text-primary-foreground h-10 px-4 py-2 rounded-md"
+        :class="{ 'bg-red-500': canAbort }"
       >
         {{ canAbort ? 'Cancel' : 'Submit' }}
       </button>
